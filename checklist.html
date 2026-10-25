@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang='en'>
+<head><meta charset='utf-8'><title>Release Checklist</title></head>
+<body>
+<h1>Release Checklist</h1>
+<form id='checklist'>
+<p><label>PR number <input name='pr_number' required></label></p>
+<p><label>Check status <input name='check_status' required></label></p>
+<p><label>Verified at (Beijing time) <input name='verified_at' required></label></p>
+<p><label>Reviewer <input name='reviewer' required></label></p>
+<p><label>Notes <textarea name='notes' rows='3'></textarea></label></p>
+<p><button type='submit'>Submit checklist</button></p>
+</form>
+<p id='confirmation' hidden>CHECKLIST-RECEIVED</p>
+<script>
+document.getElementById('checklist').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var c = document.getElementById('confirmation');
+  c.textContent = 'CHECKLIST-RECEIVED: PR #' + this.pr_number.value + ' status=' + this.check_status.value + ' verified at ' + this.verified_at.value + ' by ' + this.reviewer.value;
+  c.hidden = false;
+});
+</script>
+</body>
+</html>
